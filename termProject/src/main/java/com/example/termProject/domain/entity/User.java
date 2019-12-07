@@ -6,7 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-//태그 3개는 어디에 저장?
 
 @Entity
 public class User {
@@ -21,8 +20,8 @@ public class User {
 	private String password; //비밀번호
 	private String nickname; //닉네임
 	private String profileText; //프로필자기소개
-	private String today; //오늘방문수
-	private String total; //전체방문수
+	private int today; //오늘방문수
+	private int total; //전체방문수
 	
 	public Long getUno() {
 		return uno;
@@ -54,16 +53,16 @@ public class User {
 	public void setProfileText(String profileText) {
 		this.profileText = profileText;
 	}
-	public String getToday() {
+	public int getToday() {
 		return today;
 	}
-	public void setToday(String today) {
+	public void setToday(int today) {
 		this.today = today;
 	}
-	public String getTotal() {
+	public int getTotal() {
 		return total;
 	}
-	public void setTotal(String total) {
+	public void setTotal(int total) {
 		this.total = total;
 	}
 	
