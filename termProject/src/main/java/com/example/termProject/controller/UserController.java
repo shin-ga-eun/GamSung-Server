@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.termProject.domain.dto.user.LoginDto;
 import com.example.termProject.domain.dto.user.SignUpDto;
 import com.example.termProject.domain.dto.user.UserImageUpdateDto;
 import com.example.termProject.domain.dto.user.UserUpdateDto;
+import com.example.termProject.service.user.LoginService;
 import com.example.termProject.service.user.UserImageUpdateService;
 import com.example.termProject.service.user.UserSaveService;
 import com.example.termProject.service.user.UserUpdateService;
@@ -19,15 +21,19 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RestController
 public class UserController {
 
+	final private LoginService loginService;
 	final private UserSaveService userSaveService;
 	final private UserUpdateService userUpdateService;
 	final private UserImageUpdateService userImageUpdateService;
 	private ObjectMapper objectMapper;
 	
-	public UserController(UserSaveService userSaveService, UserUpdateService userUpdateService, UserImageUpdateService userImageUpdateService, ObjectMapper objectMapper) {
+	public UserController(LoginService loginService, UserSaveService userSaveService, UserUpdateService userUpdateService, UserImageUpdateService userImageUpdateService, ObjectMapper objectMapper) {
+		
+		this.loginService = loginService;
 		this.userSaveService = userSaveService;
 		this.userUpdateService = userUpdateService;
 		this.userImageUpdateService = userImageUpdateService;
+		
 		this.objectMapper = objectMapper;
 	}
 	
@@ -55,5 +61,11 @@ public class UserController {
 		
 	}
 	
+	//로그인
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String updateUser (@RequestBody LoginDto loginDto) {
+		return loginService.login(loginDto);
+		
+	}
 
 }
