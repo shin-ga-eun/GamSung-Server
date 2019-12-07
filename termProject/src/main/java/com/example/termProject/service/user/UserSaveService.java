@@ -62,7 +62,7 @@ public class UserSaveService {
         file.transferTo(destinationFile);
 
         String imageUrl = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/artSharing/art/image/" + user.getUno())
+                .path("/user/image/" + user.getUno())
                 .toUriString(); //모르겠음
 
         userImage.setImageName(file.getOriginalFilename());
