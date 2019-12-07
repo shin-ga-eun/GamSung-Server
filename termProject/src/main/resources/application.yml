@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/spring_sotong?verifyServerCertificate=false&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3306/project_sotong?verifyServerCertificate=false&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username: shingaeun
     password: shingaeun
   jpa:
@@ -10,3 +10,17 @@ spring:
     generate-ddl: true
     show-sql: true
     database: mysql
+    
+    
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 200MB
+      max-request-size: 200MB
+
+
+resources:
+   image-locations: C:\TermProject\
+   image-url: 127.0.0.1:8080
