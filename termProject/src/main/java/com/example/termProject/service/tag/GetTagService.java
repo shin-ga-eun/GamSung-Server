@@ -45,7 +45,6 @@ public class GetTagService {
 			else
 				tagToNum.put(tagname, 1);
 		}
-		//System.out.println("tagToNum 확인: "+tagToNum); tagToNum 확인
 
 		//2차원 배열에 저장
 		Set set = tagToNum.entrySet();
@@ -60,19 +59,9 @@ public class GetTagService {
 		
 		
 		for(int i=0; i<keylist.size(); i++) {
-			//System.out.println(" key배열의 인덱스: "+keylist.get(i)+"\n value배열의 인덱스: "+valuelist.get(i));
 			String[] s = {keylist.get(i), valuelist.get(i).toString()};
-			//System.out.println(s[0]+"  "+s[1]); 확인
 			finalList.add(i,s);
-			//System.out.println(finalList[i][0]+"  "+finalList[i][1]); 확인			
 		}
-		/*
-		//System.out.println(finalList.size()); 확인
-		for(int i=0; i<finalList.size(); i++) {
-			System.out.println(finalList.get(i)[0]+"   "+finalList.get(i)[1]);
-			//System.out.println(Integer.parseInt(finalList.get(j)[1]);
-		}
-		*/
 		
 		//cno 내림차순 정렬
 		String temp, temp2;
@@ -98,11 +87,23 @@ public class GetTagService {
 			getPopularTag.add(tag);
 		}
 		
-		
 		return getPopularTag;
 
 	}
 	
 	
-	
+	//새로운 탭의 태그 리스트 -> 정렬순서: tagname별 regDate 최신순 -> tagno이 큰순이겠징?
+	public List<GetTagDto> getNewTag (){
+		List<Tag> getAllTag = tagRepository.findAll();
+		List<GetTagDto> getNewTag = new ArrayList<>();
+		
+		for(int i=getAllTag.size()-1; i>=0; i--) {
+			GetTagDto tag = new GetTagDto();
+			tag.setTagname(getAllTag.get(i).getTagname());
+			
+			getNewTag.add(tag);
+		}
+		
+		return getNewTag;
+	}
 }

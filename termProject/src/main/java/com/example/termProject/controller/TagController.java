@@ -23,4 +23,10 @@ public class TagController {
 	public List<GetTagDto> getPopular(){
 		return getTagService.getPopularTag();
 	}
+	
+	//새로운 탭 리스트
+	@RequestMapping(value = "/getNew", method = RequestMethod.GET)
+	public List<GetTagDto> getNew(){
+		return getTagService.getNewTag();
+	}
 }
