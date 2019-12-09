@@ -15,10 +15,9 @@ public class Tag {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long tno; //태그넘버
 	
-	@Column(unique = true)
 	private String tagname; //태그명
 	
-	private LocalDate regDate; //등록날짜
+	private LocalDate regDate; //등록날짜	
 	
 	private Long cno; //카드 넘버 -> 조인안함 ?
 	
