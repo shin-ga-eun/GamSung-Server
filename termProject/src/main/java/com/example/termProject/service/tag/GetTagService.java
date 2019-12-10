@@ -33,7 +33,7 @@ public class GetTagService {
 		List<String> keylist = new ArrayList<>();
 		List<String[]> finalList = new ArrayList<>(); //최종리스트
 		
-		//tagToNum 생성 -> tagname, cno수	
+		//tagToNum 생성 -> tagName, cno 수	
 		for(int i=0; i<getAllTag.size(); i++) {
 			String tagname = getAllTag.get(i).getTagname();
 			

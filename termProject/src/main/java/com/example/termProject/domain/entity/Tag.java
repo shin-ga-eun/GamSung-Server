@@ -19,7 +19,7 @@ public class Tag {
 	
 	private LocalDate regDate; //등록날짜	
 	
-	private Long cno; //카드 넘버 -> 조인안함 ?
+	private Long cno; //카드 넘버 -> 조인안함 
 	
 
 	public Long getTno() {
