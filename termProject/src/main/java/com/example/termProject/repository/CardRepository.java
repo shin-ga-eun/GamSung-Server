@@ -11,4 +11,5 @@ import com.example.termProject.domain.entity.Card;
 public interface CardRepository extends JpaRepository<Card, Long>{
 
 	Card findByCno (Long cno);
+	List<Card> findByUserIdentity (String identity);
 }

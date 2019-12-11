@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.termProject.domain.dto.card.CardSaveDto;
-import com.example.termProject.domain.dto.card.GetCardDto;
+import com.example.termProject.domain.dto.card.GetCardByIdentityDto;
 import com.example.termProject.domain.dto.card.GetCardByTagDto;
+import com.example.termProject.domain.dto.card.GetCardDto;
 import com.example.termProject.domain.dto.tag.TagSaveDto;
+import com.example.termProject.domain.dto.user.GetProfileDto;
 import com.example.termProject.domain.entity.Card;
 import com.example.termProject.service.card.GetCardService;
 import com.example.termProject.service.card.SaveCardService;
@@ -64,13 +66,6 @@ public class CardController {
 		return getCardService.getListByTag(tagname);
 	}
 	
-	//카드 이미지에 대한 controller
-	@RequestMapping(value = "/card/image/{cno}", produces = MediaType.IMAGE_JPEG_VALUE)
-    public ResponseEntity<byte[]> getImage(@PathVariable Long cno) {
-    	
-        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG)
-                .body(getCardService.getImageResource(cno));
-    }
     
     //하나의 카드 상세보기-cno
     @RequestMapping(value = "/getCard/{cno}", method = RequestMethod.GET)
@@ -78,6 +73,23 @@ public class CardController {
 
 		return getCardService.getCardByCno(cno);
     }
-	
+    
+    //마이프로필 카드 리스트 출력 -identity
+    @RequestMapping(value = "/getProfileCard/{identity}", method = RequestMethod.GET)
+	public List<GetCardByIdentityDto> getCardByIdentity (@PathVariable String identity) {
+
+		return getCardService.getListByIdentity(identity);
+	}
+    
+    
+    //카드 이미지에 대한 controller
+  	@RequestMapping(value = "/card/image/{cno}", produces = MediaType.IMAGE_JPEG_VALUE)
+    public ResponseEntity<byte[]> getImage(@PathVariable Long cno) {
+      	
+        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG)
+                 .body(getCardService.getImageResource(cno));
+     }
+      
+
 	
 }

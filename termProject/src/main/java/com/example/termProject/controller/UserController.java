@@ -1,5 +1,8 @@
 package com.example.termProject.controller;
 
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -8,10 +11,12 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.termProject.domain.dto.user.GetProfileDto;
 import com.example.termProject.domain.dto.user.LoginDto;
 import com.example.termProject.domain.dto.user.SignUpDto;
 import com.example.termProject.domain.dto.user.UserImageUpdateDto;
 import com.example.termProject.domain.dto.user.UserUpdateDto;
+import com.example.termProject.service.user.GetUserService;
 import com.example.termProject.service.user.LoginService;
 import com.example.termProject.service.user.UserImageUpdateService;
 import com.example.termProject.service.user.UserSaveService;
@@ -25,14 +30,16 @@ public class UserController {
 	final private UserSaveService userSaveService;
 	final private UserUpdateService userUpdateService;
 	final private UserImageUpdateService userImageUpdateService;
+	final private GetUserService getUserService;
 	private ObjectMapper objectMapper;
 	
-	public UserController(LoginService loginService, UserSaveService userSaveService, UserUpdateService userUpdateService, UserImageUpdateService userImageUpdateService, ObjectMapper objectMapper) {
+	public UserController(LoginService loginService, UserSaveService userSaveService, UserUpdateService userUpdateService, UserImageUpdateService userImageUpdateService, GetUserService getUserService, ObjectMapper objectMapper) {
 		
 		this.loginService = loginService;
 		this.userSaveService = userSaveService;
 		this.userUpdateService = userUpdateService;
 		this.userImageUpdateService = userImageUpdateService;
+		this.getUserService = getUserService;
 		
 		this.objectMapper = objectMapper;
 	}
@@ -67,5 +74,21 @@ public class UserController {
 		return loginService.login(loginDto);
 		
 	}
+	
+	//마이프로필 유저정보 출력 -identity
+    @RequestMapping(value = "/getProfile/{identity}", method = RequestMethod.GET)
+	public GetProfileDto getProfile (@PathVariable String identity) {
+
+		return getUserService.getProfile(identity);
+	}
+    
+  //유저 이미지에 대한 controller
+  	@RequestMapping(value = "/user/image/{uno}", produces = MediaType.IMAGE_JPEG_VALUE)
+    public ResponseEntity<byte[]> getImage(@PathVariable Long uno) {
+      	
+        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG)
+                 .body(getUserService.getImageResource(uno));
+     }
+    
 
 }

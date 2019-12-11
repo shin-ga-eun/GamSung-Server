@@ -6,11 +6,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Service;
 
-import com.example.termProject.domain.dto.card.GetCardDto;
+import com.example.termProject.domain.dto.card.GetCardByIdentityDto;
 import com.example.termProject.domain.dto.card.GetCardByTagDto;
+import com.example.termProject.domain.dto.card.GetCardDto;
 import com.example.termProject.domain.dto.tag.GetCnoDto;
 import com.example.termProject.domain.entity.Card;
 import com.example.termProject.domain.entity.CardImage;
@@ -93,7 +95,7 @@ public class GetCardService {
 	}
 	
 	
-	//카드상세보기 (cno) (1번) + 댓글리스트 가져오기 GetReplyByCno
+	//카드상세보기 (cno) + 댓글리스트 가져오기 GetReplyByCno
 	public GetCardDto getCardByCno (Long cno) {
 		Card card = cardRepository.findByCno(cno);
 		GetCardDto getCard = new GetCardDto();
@@ -109,6 +111,29 @@ public class GetCardService {
 		return getCard;
 		
 	}
+	
+	
+	
+	//마이프로필 -  카드 리스트 (identity)
+	public List<GetCardByIdentityDto> getListByIdentity (String identity){
+		List<Card> cardlist = cardRepository.findByUserIdentity(identity);
+		List<GetCardByIdentityDto> getCard = new ArrayList<>();
+		
+		for(int i=0; i<cardlist.size(); i++) {
+			GetCardByIdentityDto card = new GetCardByIdentityDto();
+			
+			card.setCno(cardlist.get(i).getCno());
+			card.setContent(cardlist.get(i).getContent());
+			card.setFontsize(cardlist.get(i).getFontsize());
+			card.setImageUrl("http://localhost:8080/card/image/"+card.getCno());
+			
+			getCard.add(card);
+		}
+		
+		return getCard;
+		
+	}
+	
 	
 	
 	
