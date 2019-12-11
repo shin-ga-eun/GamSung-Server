@@ -9,6 +9,7 @@ import java.util.List;
 import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Service;
 
+import com.example.termProject.domain.dto.card.GetCardByCnoDto;
 import com.example.termProject.domain.dto.card.GetCardByTagDto;
 import com.example.termProject.domain.dto.tag.GetCnoDto;
 import com.example.termProject.domain.entity.Card;
@@ -77,6 +78,7 @@ public class GetCardService {
 		
 		for(int i=0; i<cardlist.size(); i++) {
 			GetCardByTagDto getCard = new GetCardByTagDto();
+			
 			getCard.setCno(cardlist.get(i).getCno());
 			getCard.setContent(cardlist.get(i).getContent());
 			getCard.setFontsize(cardlist.get(i).getFontsize());
@@ -89,6 +91,25 @@ public class GetCardService {
 		
 		return getCardList;
 	}
+	
+	
+	//카드상세보기 (cno) (1번) + 댓글리스트 가져오기 GetReplyByCno
+	public GetCardByCnoDto getCardByCno (Long cno) {
+		Card card = cardRepository.findByCno(cno);
+		GetCardByCnoDto getCard = new GetCardByCnoDto();
+		
+		getCard.setCno(card.getCno());
+		getCard.setIdentity(card.getUser().getIdentity());
+		getCard.setContent(card.getContent());
+		getCard.setFontsize(card.getFontsize());
+		getCard.setImageUrl("http://localhost:8080/card/image/"+getCard.getCno());
+		getCard.setRegDate(card.getRegDate());
+		getCard.setHeart(card.getHeart());
+		
+		return getCard;
+		
+	}
+	
 	
 	
 	
