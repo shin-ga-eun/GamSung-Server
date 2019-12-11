@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.termProject.domain.dto.card.CardSaveDto;
-import com.example.termProject.domain.dto.card.GetCardByCnoDto;
+import com.example.termProject.domain.dto.card.GetCardDto;
 import com.example.termProject.domain.dto.card.GetCardByTagDto;
 import com.example.termProject.domain.dto.tag.TagSaveDto;
 import com.example.termProject.domain.entity.Card;
@@ -74,7 +74,7 @@ public class CardController {
     
     //하나의 카드 상세보기-cno
     @RequestMapping(value = "/getCard/{cno}", method = RequestMethod.GET)
-	public GetCardByCnoDto getCardByCno (@PathVariable Long cno) {
+	public GetCardDto getCardByCno (@PathVariable Long cno) {
 
 		return getCardService.getCardByCno(cno);
     }

@@ -9,7 +9,7 @@ import java.util.List;
 import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Service;
 
-import com.example.termProject.domain.dto.card.GetCardByCnoDto;
+import com.example.termProject.domain.dto.card.GetCardDto;
 import com.example.termProject.domain.dto.card.GetCardByTagDto;
 import com.example.termProject.domain.dto.tag.GetCnoDto;
 import com.example.termProject.domain.entity.Card;
@@ -94,9 +94,9 @@ public class GetCardService {
 	
 	
 	//카드상세보기 (cno) (1번) + 댓글리스트 가져오기 GetReplyByCno
-	public GetCardByCnoDto getCardByCno (Long cno) {
+	public GetCardDto getCardByCno (Long cno) {
 		Card card = cardRepository.findByCno(cno);
-		GetCardByCnoDto getCard = new GetCardByCnoDto();
+		GetCardDto getCard = new GetCardDto();
 		
 		getCard.setCno(card.getCno());
 		getCard.setIdentity(card.getUser().getIdentity());

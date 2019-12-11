@@ -2,7 +2,7 @@ package com.example.termProject.domain.dto.card;
 
 import java.time.LocalDate;
 
-public class GetCardByCnoDto {
+public class GetCardDto {
 
 	private Long cno; //카드 넘버
 	
