@@ -60,8 +60,8 @@ public class CardController {
 	}
 	
 	//tagName 상세보기 (해당 태그에 해당하는 카드 리스트 출력)
-	@RequestMapping(value = "/getTag/{tagname}", method = RequestMethod.GET)
-	public List<GetCardByTagDto> getTag (@PathVariable String tagname) {
+	@RequestMapping(value = "/getCardByTag/{tagname}", method = RequestMethod.GET)
+	public List<GetCardByTagDto> getCardByTag (@PathVariable String tagname) {
 
 		return getCardService.getListByTag(tagname);
 	}

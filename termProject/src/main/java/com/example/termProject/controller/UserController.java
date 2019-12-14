@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.termProject.domain.dto.user.GetProfileDto;
 import com.example.termProject.domain.dto.user.LoginDto;
+import com.example.termProject.domain.dto.user.LoginResponseDto;
 import com.example.termProject.domain.dto.user.SignUpDto;
 import com.example.termProject.domain.dto.user.UserImageUpdateDto;
 import com.example.termProject.domain.dto.user.UserUpdateDto;
@@ -46,12 +47,12 @@ public class UserController {
 	
 	//회원가입 -유저정보, 유저프로필이미지
 	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
-	public void saveUser (@RequestPart MultipartFile imageFile,@RequestParam("signUpDto") String json) throws Exception {
+	public void saveUser (@RequestPart MultipartFile imageFile, @RequestParam("signUpDto") String json) throws Exception {
 		
 		SignUpDto userSave = objectMapper.readValue(json, SignUpDto.class);
 		userSaveService.saveUserAndFile(userSave, imageFile);
 		
-	}
+	} 
 	
 	//회원정보수정 -유저정보수정
 	@RequestMapping(value = "/userUpdate", method = RequestMethod.POST)
@@ -70,10 +71,11 @@ public class UserController {
 	
 	//로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String updateUser (@RequestBody LoginDto loginDto) {
+	public LoginResponseDto login (@RequestBody LoginDto loginDto) {
 		return loginService.login(loginDto);
 		
 	}
+	
 	
 	//마이프로필 유저정보 출력 -identity
     @RequestMapping(value = "/getProfile/{identity}", method = RequestMethod.GET)
