@@ -84,7 +84,7 @@ public class UserController {
 		return getUserService.getProfile(identity);
 	}
     
-  //유저 이미지에 대한 controller
+    //유저 이미지에 대한 controller
   	@RequestMapping(value = "/user/image/{uno}", produces = MediaType.IMAGE_JPEG_VALUE)
     public ResponseEntity<byte[]> getImage(@PathVariable Long uno) {
       	

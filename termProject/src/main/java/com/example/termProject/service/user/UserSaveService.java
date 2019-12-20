@@ -37,6 +37,7 @@ public class UserSaveService {
 	public void saveUserAndFile(SignUpDto signUpDto, MultipartFile file) throws IOException {
 		User user = new User();
 		
+		
 		user.setIdentity(signUpDto.getIdentity());
 		user.setPassword(signUpDto.getPassword());
 		user.setNickname(signUpDto.getNickname());
