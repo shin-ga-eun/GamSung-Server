@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -101,13 +103,17 @@ public class GetCardService {
 	public GetCardDto getCardByCno (Long cno) {
 		Card card = cardRepository.findByCno(cno);
 		GetCardDto getCard = new GetCardDto();
-		
+		LocalDate ld = card.getRegDate();
+//		String localDateToString = ld.of(ld.getYear(),ld.getMonth(),ld.getDayOfMonth()).format(DateTimeFormatter.BASIC_ISO_DATE);
+		String localDateToString = ld.getYear()+"."+ld.getMonthValue()+"."+ld.getDayOfMonth();
+
+		System.out.println("/////////////////////////"+localDateToString);
 		getCard.setCno(card.getCno());
 		getCard.setIdentity(card.getUser().getIdentity());
 		getCard.setContent(card.getContent());
 		getCard.setFontsize(card.getFontsize());
 		getCard.setImageUrl("http://localhost:8080/card/image/"+getCard.getCno());
-		getCard.setRegDate(card.getRegDate());
+		getCard.setRegDate(localDateToString);
 		getCard.setHeart(card.getHeart());
 		
 		return getCard;

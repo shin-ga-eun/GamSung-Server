@@ -46,7 +46,7 @@ public class ReplyController {
 	//댓글 리스트 출력 (cno)
 	@RequestMapping(value = "/getReply/{cno}", method = RequestMethod.GET)
 	public List<GetReplyByCnoDto> getReply (@PathVariable Long cno) {
-
+		System.out.println("////////////////////////댓글///////"+cno);
 		return getReplyService.getReply(cno);
 	}
 	

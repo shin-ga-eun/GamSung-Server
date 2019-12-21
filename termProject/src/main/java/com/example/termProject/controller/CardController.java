@@ -70,7 +70,6 @@ public class CardController {
     //하나의 카드 상세보기-cno
     @RequestMapping(value = "/getCard/{cno}", method = RequestMethod.GET)
 	public GetCardDto getCardByCno (@PathVariable Long cno) {
-
 		return getCardService.getCardByCno(cno);
     }
     

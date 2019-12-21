@@ -1,6 +1,5 @@
 package com.example.termProject.domain.dto.card;
 
-import java.time.LocalDate;
 
 public class GetCardDto {
 
@@ -10,7 +9,7 @@ public class GetCardDto {
 	private String content; //카드 내용
 	private int fontsize; //카드 폰트 크기
 	private String imageUrl; //카드 이미지
-	private LocalDate regDate; //카드 등록 날짜
+	private String regDate; //카드 등록 날짜
 	private int heart; //카드 공감 수
 	
 	
@@ -44,10 +43,10 @@ public class GetCardDto {
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
-	public LocalDate getRegDate() {
+	public String getRegDate() {
 		return regDate;
 	}
-	public void setRegDate(LocalDate regDate) {
+	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
 	public int getHeart() {

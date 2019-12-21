@@ -18,13 +18,13 @@ public class TagController {
 		this.getTagService = getTagService;
 	}
 	
-	//인기있는 탭 리스트
+	//메인홈 -인기있는 탭 리스트
 	@RequestMapping(value = "/getPopular", method = RequestMethod.GET)
 	public List<GetTagDto> getPopular(){
 		return getTagService.getPopularTag();
 	}
 	
-	//새로운 탭 리스트
+	//메인홈 -새로운 탭 리스트
 	@RequestMapping(value = "/getNew", method = RequestMethod.GET)
 	public List<GetTagDto> getNew(){
 		return getTagService.getNewTag();

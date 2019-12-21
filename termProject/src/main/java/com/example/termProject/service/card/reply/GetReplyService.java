@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,16 +50,20 @@ public class GetReplyService {
 	public List<GetReplyByCnoDto> getReply (Long cno){
 		List<Reply> getReply = replyRepository.findAll();
 		List<GetReplyByCnoDto> getReplyByCno = new ArrayList<>();
-		
+				
 		for(int i=0; i<getReply.size(); i++) {
 			if(getReply.get(i).getCard().getCno() == cno) {
 				GetReplyByCnoDto reply = new GetReplyByCnoDto();
 				
+				LocalDate ld = getReply.get(i).getRegDate();
+				String localDateToString = ld.getYear()+"."+ld.getMonthValue()+"."+ld.getDayOfMonth();
+				
+				System.out.println("/////////////////////////"+localDateToString);
 				reply.setRno(getReply.get(i).getRno());
 				reply.setContent(getReply.get(i).getContent());
 				reply.setFontsize(getReply.get(i).getFontsize());
 				reply.setIdentity(getReply.get(i).getIdentity());
-				reply.setRegDate(getReply.get(i).getRegDate());
+				reply.setRegDate(localDateToString);
 				reply.setImageUrl("http://localhost:8080/card/reply/image/"+reply.getRno());				
 				getReplyByCno.add(reply);
 			}

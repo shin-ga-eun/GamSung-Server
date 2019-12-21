@@ -8,7 +8,7 @@ public class GetReplyByCnoDto {
 	private String identity; //댓글 작성자
 	private String content; //댓글 카드 내용
 	private int fontsize; //댓글 카드 폰트 크기
-	private LocalDate regDate; //댓글 카드 작성 날짜
+	private String regDate; //댓글 카드 작성 날짜
 	private String imageUrl; //댓글 이미지 url
 	
 	
@@ -38,10 +38,10 @@ public class GetReplyByCnoDto {
 	public void setFontsize(int fontsize) {
 		this.fontsize = fontsize;
 	}
-	public LocalDate getRegDate() {
+	public String getRegDate() {
 		return regDate;
 	}
-	public void setRegDate(LocalDate regDate) {
+	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
 	public String getImageUrl() {
