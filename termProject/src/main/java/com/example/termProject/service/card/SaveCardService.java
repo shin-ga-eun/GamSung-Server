@@ -43,9 +43,12 @@ public class SaveCardService {
 		Card card = new Card();
 		Card saveCard = new Card(); //최종저장카드 변수
 		LocalDate regDate = LocalDate.now();
+		String modifyContent = cardSaveDto.getContent();
 		
+		modifyContent = modifyContent.replace("__", "\n");
+	
 		card.setUser(userRepository.findByIdentity(cardSaveDto.getIdentity()));
-		card.setContent(cardSaveDto.getContent());
+		card.setContent(modifyContent);
 		card.setFontsize(cardSaveDto.getFontsize());
 		card.setRegDate(regDate);
 		
