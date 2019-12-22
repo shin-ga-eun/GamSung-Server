@@ -92,7 +92,7 @@ public class GetTagService {
 	}
 	
 	
-	//새로운 탭의 태그 리스트 -> 정렬순서: tagname별 regDate 최신순 -> tagno이 큰순이겠징?
+	//새로운 탭의 태그 리스트 -> 정렬순서: tagname별 regDate 최신순 -> tagno이 큰순
 	public List<GetTagDto> getNewTag (){
 		List<Tag> getAllTag = tagRepository.findAll();
 		List<GetTagDto> getNewTag = new ArrayList<>();

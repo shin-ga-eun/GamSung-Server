@@ -1,5 +1,7 @@
 package com.example.termProject.controller;
 
+import java.util.List;
+
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,13 +14,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.termProject.domain.dto.user.GetProfileDto;
+import com.example.termProject.domain.dto.user.GetUserNameDto;
 import com.example.termProject.domain.dto.user.LoginDto;
 import com.example.termProject.domain.dto.user.LoginResponseDto;
 import com.example.termProject.domain.dto.user.SignUpDto;
 import com.example.termProject.domain.dto.user.UserImageUpdateDto;
 import com.example.termProject.domain.dto.user.UserUpdateDto;
+import com.example.termProject.service.user.GetSearchKeywordService;
 import com.example.termProject.service.user.GetUserService;
 import com.example.termProject.service.user.LoginService;
+import com.example.termProject.service.user.SaveTotalService;
 import com.example.termProject.service.user.UserImageUpdateService;
 import com.example.termProject.service.user.UserSaveService;
 import com.example.termProject.service.user.UserUpdateService;
@@ -32,16 +37,19 @@ public class UserController {
 	final private UserUpdateService userUpdateService;
 	final private UserImageUpdateService userImageUpdateService;
 	final private GetUserService getUserService;
+	final private GetSearchKeywordService getSearchKeywordService;
+	final private SaveTotalService saveTotalService;
 	private ObjectMapper objectMapper;
 	
-	public UserController(LoginService loginService, UserSaveService userSaveService, UserUpdateService userUpdateService, UserImageUpdateService userImageUpdateService, GetUserService getUserService, ObjectMapper objectMapper) {
+	public UserController(LoginService loginService, UserSaveService userSaveService, UserUpdateService userUpdateService, UserImageUpdateService userImageUpdateService, GetUserService getUserService, GetSearchKeywordService getSearchKeywordService, SaveTotalService saveTotalService, ObjectMapper objectMapper) {
 		
 		this.loginService = loginService;
 		this.userSaveService = userSaveService;
 		this.userUpdateService = userUpdateService;
 		this.userImageUpdateService = userImageUpdateService;
 		this.getUserService = getUserService;
-		
+		this.getSearchKeywordService = getSearchKeywordService;
+		this.saveTotalService = saveTotalService;
 		this.objectMapper = objectMapper;
 	}
 	
@@ -91,6 +99,19 @@ public class UserController {
         return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG)
                  .body(getUserService.getImageResource(uno));
      }
+    
+    //유저 검색 리스트 -keyword
+    @RequestMapping(value = "/getSearchKeyword/{keyword}", method = RequestMethod.GET)
+	public List<GetUserNameDto> getSearchKeyword (@PathVariable String keyword) {
+
+		return getSearchKeywordService.getSearchKeyword(keyword);
+	}
+    
+    //유저 total 조회수 증가 -identity
+  	@RequestMapping(value = "/saveTotal", method = RequestMethod.POST)
+  	public void saveTotal (@RequestBody GetUserNameDto getUserNameDto) {
+  		saveTotalService.saveTotal(getUserNameDto);
+  	}
     
 
 }

@@ -11,6 +11,7 @@ import com.example.termProject.domain.entity.Tag;
 public interface TagRepository extends JpaRepository<Tag, Long>{
 
 	List<Tag> findByTagname (String tagname);
+	List<Tag> findByCno (Long cno);
 
 	
 	

@@ -13,13 +13,14 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.termProject.domain.dto.card.CardDeleteDto;
 import com.example.termProject.domain.dto.card.CardSaveDto;
 import com.example.termProject.domain.dto.card.GetCardByIdentityDto;
 import com.example.termProject.domain.dto.card.GetCardByTagDto;
 import com.example.termProject.domain.dto.card.GetCardDto;
 import com.example.termProject.domain.dto.tag.TagSaveDto;
-import com.example.termProject.domain.dto.user.GetProfileDto;
 import com.example.termProject.domain.entity.Card;
+import com.example.termProject.service.card.DeleteCardService;
 import com.example.termProject.service.card.GetCardService;
 import com.example.termProject.service.card.SaveCardService;
 import com.example.termProject.service.tag.SaveTagService;
@@ -31,12 +32,14 @@ public class CardController {
 	final private SaveCardService saveCardService;
 	final private SaveTagService saveTagService;
 	final private GetCardService getCardService;
+	final private DeleteCardService deleteCardService;
 	private ObjectMapper objectMapper;
 	
-	public CardController (SaveCardService saveCardService, SaveTagService saveTagService, GetCardService getCardService, ObjectMapper objectMapper) {
+	public CardController (SaveCardService saveCardService, SaveTagService saveTagService, GetCardService getCardService, DeleteCardService deleteCardService, ObjectMapper objectMapper) {
 		this.saveCardService = saveCardService;
 		this.saveTagService = saveTagService;
 		this.getCardService = getCardService;
+		this.deleteCardService = deleteCardService;
 		this.objectMapper = objectMapper;
 	}
 	
@@ -89,6 +92,11 @@ public class CardController {
                  .body(getCardService.getImageResource(cno));
      }
       
+    //카드 삭제
+    @RequestMapping(value="/deleteCard", method=RequestMethod.POST)
+	public void deleteCard (@RequestBody CardDeleteDto cardDeleteDto) {
+		deleteCardService.deleteCard(cardDeleteDto);
+	}
 
 	
 }

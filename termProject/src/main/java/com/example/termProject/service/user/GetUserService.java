@@ -45,7 +45,7 @@ public class GetUserService {
 	}
 	
 	
-	//마이프로필 - 유저 정보 (identity)
+		//마이프로필 - 유저 정보 (identity)
 		public GetProfileDto getProfile (String identity) {
 			User user = userRepository.findByIdentity(identity);
 			GetProfileDto getProfile = new GetProfileDto();
