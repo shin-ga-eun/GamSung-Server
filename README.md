@@ -23,7 +23,7 @@
 
 ## 프로젝트 개발환경
 * 개발환경 - Eclipse, Android Studio
-* 개발도구 - GitHeb
+* 개발도구 - GitHub
 * 기획도구 - 종이와 펜 📝
 
 ## 프로젝트 개발 언어 및 기술 스택
