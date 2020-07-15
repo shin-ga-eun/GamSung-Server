@@ -1,0 +1,107 @@
+# 2019-2-study
+***자바정규식 사용법***
+
+1.정규표현식이란?
+
+텍스트를 기술하기 위한 표현방식으로 특정한 조건의 문자를 검색하거나 치환하는 문법을 제공한다.
+
+2.쓰이는 경우
+- 숫자만 나오도록 할 때
+- 이메일 형식 체크
+- 파일 확장자 확인
+
+3. Matcher 클래스와 Pattern 클래스
+
+3-1. 기본 개념
+
+Matcher 클래스는 char들을 match하는 것과 관련된 메소드를 제공한다.
+
+Matcher 클래스는 Pattern클래스의 객체를 받아서, 그 기준으로 match하고 메소드들을 사용할 수 있도록 하기 때문에
+제일 먼저 match 기준이 되는 Pattern 객체를만들어야한다.
+
+Pattern.compile()의 인자에 정규표현식을 넣어주면 된다.
+
+(예시)
+
+String testStr = "10시가 다 됬네";
+
+Pattern p = Pattern.complile("\\d+시");
+
+다음으로 Matcher Class의 객체를 생성하고, 이 클래스가 제공하는 메소드들을 활용한다.
+
+위에서 만든 Pattern Class의 객체에 matcher()메소드를 사용하고, 인자로 비교할 텍스트를 넣어준다.
+
+(예시)
+
+String testStr = "10시가 다 됬네";
+
+Pattern p = Pattern.complile("\\d+시");
+
+Matcher mMatcher = p.matcher(testStr);
+
+3-2. Matcher 클래스의 메소드들
+
+(1) find()
+  Pattern 에 일치하는 텍스트 발견 시 true 반환.
+  
+  반복문을 계속 호출하여 주어진 텍스트의 두,세번째로 패턴과 일치하는부분도 찾을 수 있다.
+
+(2) start()
+  일치한 텍스트의 시작 index 값을 넘겨줌.
+
+(3) end()
+  일치한 텍스트의 마지막 index 값을 넘겨줌.
+
+(4) match()
+  주어진 텍스트 전체와 Pattern 이 일치하는 경우 true 반환.
+  
+ 3-3. Matcher 클래스로 정규표현식 응용
+ 
+ (예시)
+ "10시가 다 됬네" 에서 "10:00"을 출력
+ 
+ (방법)
+ find()를 이용하여 패턴 발견되는지 확인
+ -> start(), end()를 이용해서 index값을 알아냄
+ 
+ (안드로이드 코드)
+ 
+"`
+String testStr = "10시가 다 됬네";
+
+Pattern p = Pattern.complile("\\d+시");
+
+Matcher mMatcher = p.matcher(testStr);
+
+ if (mMatcher.find()){
+ 
+   String mReplacedSTr = testStr.substring(mMatcher.start(), mMatcher.end() -1);
+   
+ } else
+ 
+   mResultText.setText("못찾음");
+   
+"`
+
+4. Matcher 메소드 심화 -find(),group() 정리
+
+(예시)
+
+String target = "나는 1998년생이다.";
+
+Pattern p = Pattern.compile("[0-9]");
+
+Matcher m = p.matcher(target);
+
+while(m.find()){
+
+  System.out.println(m.group());
+  
+  }
+  
+(설명)
+
+Matcher의 find()를 통해 첫번째 값을 찾아내고, true나 false를 반환한다.
+이후, group()을 통해 방금 찾은 문자열을 사용한다.
+
+
