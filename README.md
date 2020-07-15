@@ -28,6 +28,7 @@
 
 ## 프로젝트 개발 언어 및 기술 스택
 * SpringBoot(Java)
+* SpringBoot JPA
 * Android(Java)
 * Retrofit2
 
