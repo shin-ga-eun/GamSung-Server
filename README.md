@@ -15,6 +15,8 @@
 * 해시태그/회원 검색 기능 : 해당 해시태그와 관련된 카드를 조회, 다른 회원의 게시글 조회 기능
 * 게시물 인기있는/새로운 조회 기능 : 공감(하트)순, 업로드 순으로 게시물 조회 기능
 
+😉 프로젝트 기능 구현에 대한 자세한 포스팅 https://shin-bugkiller.tistory.com/entry/%EC%86%8C%ED%86%B5
+
 ## 작품 상세 페이지
 ![스크린샷 2020-07-15 오후 7 21 10](https://user-images.githubusercontent.com/31677736/87533972-65b3c980-c6d0-11ea-848a-060e657b03df.png)
 ![스크린샷 2020-07-15 오후 7 22 10](https://user-images.githubusercontent.com/31677736/87534084-8714b580-c6d0-11ea-8b03-3369df71c9af.png)
